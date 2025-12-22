@@ -1,0 +1,9 @@
+{
+  "name": "Nimbus iQ AI Platform",
+  "description": "A comprehensive suite of AI tools for text, image, video, and audio generation and analysis, powered by Google's latest models.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}

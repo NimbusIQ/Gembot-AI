@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        scrollbar-width: thin;
+        scrollbar-color: #374151 #111827;
+    }
+
+    body::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    body::-webkit-scrollbar-track {
+        background: #111827;
+    }
+
+
+
+    body::-webkit-scrollbar-thumb {
+        background-color: #374151;
+        border-radius: 10px;
+        border: 2px solid #111827;
+    }
+}
+
+
+@layer utilities {
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes slide-in-bottom {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes pop-in {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .animate-fade-in {
+        animation: fade-in 0.5s ease-out forwards;
+    }
+    .animate-slide-in-bottom {
+        animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+    .animate-pop-in {
+        animation: pop-in 0.3s ease-out forwards;
+    }
+}
+
+.feature-card-bg-gradient {
+    background-image: radial-gradient(circle at 30% 107%, #083344 0%, #111827 90%);
+}
+.feature-card-hover-gradient {
+    background-image: radial-gradient(circle at 30% 107%, #0e7490 0%, #111827 90%);
+}
+
+.chat-bubble-user {
+    @apply bg-cyan-600 text-white self-end;
+}
+
+.chat-bubble-model {
+    @apply bg-gray-700 text-gray-200 self-start;
+}
