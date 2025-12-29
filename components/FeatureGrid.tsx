@@ -1,3 +1,4 @@
+
 import React from 'react';
 import FeatureCard from './FeatureCard';
 
@@ -6,20 +7,23 @@ interface FeatureGridProps {
 }
 
 const features = {
-  text: [
-    { id: 'chatbot', title: 'AI Chatbot', icon: 'voice_chat', description: 'Engage in conversations, ask complex questions, and get fast responses from a suite of Gemini models.' },
-    { id: 'search', title: 'Grounded Search', icon: 'travel_explore', description: 'Get up-to-date, real-world information grounded in Google Search and Maps data.' },
+  intelligence: [
+    { id: 'chatbot', title: 'Cognitive Chat', icon: 'psychology', description: 'Advanced reasoning and multi-turn dialogue powered by Gemini 3 Pro.' },
+    { id: 'search', title: 'Deep Search', icon: 'travel_explore', description: 'Grounded intelligence with real-time web and maps integration.' },
   ],
-  media: [
-    { id: 'image_studio', title: 'Image Studio', icon: 'photo_camera', description: 'Generate, edit, and analyze images with powerful models like Imagen and Gemini.' },
-    { id: 'video_studio', title: 'Video Studio', icon: 'movie', description: 'Create stunning videos from text or images and analyze video content using Veo.' },
-    { id: 'audio_studio', title: 'Audio Studio', icon: 'graphic_eq', description: 'Experience real-time voice conversations, transcribe audio, and generate speech with TTS.' },
+  senses: [
+    { id: 'image_studio', title: 'Vision Studio', icon: 'visibility', description: 'High-fidelity image synthesis, live camera analysis, and neural editing.' },
+    { id: 'video_studio', title: 'Motion Studio', icon: 'movie', description: 'Temporal generation with Veo 3.1 and deep video semantic analysis.' },
+    { id: 'audio_studio', title: 'Aural Studio', icon: 'settings_voice', description: 'Ultra-low latency live voice interaction and high-fidelity speech synthesis.' },
   ],
 };
 
-const Section: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
-    <div>
-        <h2 className="text-2xl font-bold text-cyan-400/80 mb-6 tracking-wide">{title}</h2>
+const Section: React.FC<{ title: string; subtitle: string; children: React.ReactNode }> = ({ title, subtitle, children }) => (
+    <div className="space-y-6">
+        <div className="border-l-2 border-cyan-500/50 pl-4">
+            <h2 className="text-xl font-bold text-white tracking-tight">{title}</h2>
+            <p className="text-sm text-slate-500">{subtitle}</p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {children}
         </div>
@@ -29,19 +33,37 @@ const Section: React.FC<{ title: string; children: React.ReactNode }> = ({ title
 
 const FeatureGrid: React.FC<FeatureGridProps> = ({ onSelectFeature }) => {
   return (
-    <div className="space-y-12">
-        <div className="text-center animate-slide-in-bottom">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">Welcome to Nimbus iQ</h1>
-            <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">Your unified platform for cutting-edge generative AI. Select a tool to begin.</p>
+    <div className="space-y-16 py-8">
+        <div className="text-center space-y-4 animate-slide-in-bottom">
+            <div className="inline-block px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold tracking-widest uppercase mb-4">
+                Neural Platform v3.1
+            </div>
+            <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter">
+                NIMBUS <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-white to-blue-500">IQ STUDIO</span>
+            </h1>
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto font-medium leading-relaxed">
+                The Integrated Development Environment for multimodal AI. 
+                Build, test, and deploy complex neural chains in one unified interface.
+            </p>
+            
+            <div className="pt-8">
+                <button 
+                    onClick={() => onSelectFeature('ide')}
+                    className="group relative px-8 py-4 bg-cyan-500 text-black font-black uppercase tracking-widest text-sm rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(34,211,238,0.3)]"
+                >
+                    <span className="relative z-10 flex items-center">
+                        Initialize Neural IDE
+                        <span className="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">terminal</span>
+                    </span>
+                    <div className="absolute inset-0 bg-white/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </button>
+            </div>
         </div>
 
-        <div className="space-y-10 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            <Section title="Text & Logic">
-                {features.text.map(feature => <FeatureCard key={feature.id} {...feature} onSelect={onSelectFeature} />)}
-            </Section>
-            
-            <Section title="Multimedia">
-                {features.media.map(feature => <FeatureCard key={feature.id} {...feature} onSelect={onSelectFeature} />)}
+        <div className="space-y-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <Section title="Component Library" subtitle="Individual modality nodes for linguistic and sensory synthesis">
+                {features.intelligence.map(feature => <FeatureCard key={feature.id} {...feature} onSelect={onSelectFeature} />)}
+                {features.senses.map(feature => <FeatureCard key={feature.id} {...feature} onSelect={onSelectFeature} />)}
             </Section>
         </div>
     </div>
